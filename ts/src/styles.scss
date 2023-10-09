@@ -16,3 +16,32 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+
+  h5{
+    color: var(--orange);
+    font-size: 1rem;
+  }
+
+  p{
+    color: var(--grey-300);
+  }
+
+  strong{
+    color: var(--grey-300);
+  }
+  
+  .empty-topic{   
+    padding: 0.5rem;
+  }
+  .answered-topic,
+  .empty-topic{
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      border-radius: 4px;
+      box-shadow: 1px 3px 5px 4px rgba(0,0,0,0.19);
+  
+          p{
+              font-size: 0.75rem;
+          }
+  }

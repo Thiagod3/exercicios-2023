@@ -1,0 +1,40 @@
+aside{
+    position: fixed;
+    width: 13.75rem;
+    height: 100vh;
+    box-shadow: 5px 0 5px rgba(0, 0, 0, 0.2);
+  }
+  
+  h1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1,875rem;
+    background: var(--orange-gradient);
+    color: var(--white);
+    height: 4.25rem;
+    width: 100%;
+  }
+  
+  .mimic-buttons{
+    display: flex;
+    flex-direction: column;
+  
+    p{
+      height: 2.0625rem;
+      background: none;
+      border: none;
+      border-bottom: 2px solid var(--grey);
+      color: var(--grey-300);
+      font-size: 0.9375rem;
+      font-weight: 500;
+      text-align: left;
+      padding-left: 24px;
+      cursor: pointer;
+    }
+  
+    .selected{
+      background-color: var(--beige);
+      border-left: 5px solid var(--orange);
+    }
+  }

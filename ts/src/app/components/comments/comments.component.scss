@@ -1,0 +1,63 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    padding-top: 2rem;
+    gap: 1rem;
+    border-top: 1px solid var(--grey);
+}
+
+.name{    
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.comment-content{
+    padding-right: 5rem;
+    font-size: 0.85rem;
+}
+
+.answered-topic-content{
+    padding: 0.5rem;
+}
+
+.ops-topic-subject{
+    display: flex;
+    border: none;
+    background-color: var(--white);
+    color: var(--orange);
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.replys{
+    display: flex;
+    align-items: center;
+    height: 2rem;
+    margin-top: 0.5rem;
+    gap: 5px;
+
+        #points{
+            height: 1.25rem;
+            color: var(--orange);
+        }
+
+        #heart{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 1.6875rem;
+            height: 1.25rem;
+            background-color: var(--orange);
+            border-radius: 4px;
+
+                img{
+                    width: 1rem;
+                }
+        }
+}
+
+.topic{
+    padding: 0.5rem;
+}
