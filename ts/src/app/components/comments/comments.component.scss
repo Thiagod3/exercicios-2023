@@ -61,3 +61,34 @@
 .topic{
     padding: 0.5rem;
 }
+
+    //Comentarios
+
+    .comment-author{
+        padding: 0.5rem;
+        background-color: var(--grey);
+        border-top: 1px solid var(--grey-100);
+    }
+    
+    .comment-author-id{
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    .comment-author-tag{
+        display: flex;
+        gap: 1rem;
+
+        strong{            
+            color: var(--orange);
+        }
+    }
+    
+    .comment-person{    
+        display: flex;
+        flex-direction: column;
+        padding: 0.5rem;
+        gap: 0.5rem;
+        border-top: 1px solid var(--grey-100);
+    }
+    
