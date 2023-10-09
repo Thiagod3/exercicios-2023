@@ -1,4 +1,6 @@
-<div class="discussoes-content">
+
+<!-- Inicio -->
+<div *ngIf="status === Status.Inicio" class="discussoes-content">
     <div class="criar-topico">
         <h5>
         Compartilhe suas ideias ou dúvidas com os autores!
@@ -14,9 +16,76 @@
             Sabia que o maior estímulo no desenvolvimento científico e cultural é a curiosidade? Deixe seus questionamentos ou sugestões para o autor!
             </p>
 
-            <button class="btn-create-topic">
+            <button class="btn-create-topic" (click)="status = Status.Enviar">
                 <img src="../../assets/icons/plus-bold.svg"/>
+                {{ status ? '' : 'criar tópico'}}
             </button>
 
         </div>
+</div>
+
+<!-- Formulario -->
+<div *ngIf="status === Status.Enviar">
+    <p class="dica">Tem uma dúvida ou sugestão? Compartilhe seu feedback com os autores!</p>
+
+    <form>
+        <div class="input-assunto">
+            <h5>Assunto</h5>
+            <input class="subject" placeholder="Defina um tópico sucinto para notificar os autores..."/>
+        </div>
+    
+        <div class="input-conteudo">
+            <h5>Conteúdo</h5>
+            <input/>
+        </div>
+    </form>
+
+    <div class="enviar">
+        <div class="btn-send-topic">
+            <button (click)="status = Status.Criar">
+                {{status ? 'Enviar' : 'Enviar'}}
+            </button>
+        </div>
+    </div>
+    
+    
+</div>
+
+<!-- Feedback -->
+
+<div *ngIf="status === Status.Criar">
+        <div class="feedback">
+            
+            <h5>Seu tópico foi enviado com sucesso! :D</h5>
+            <p>Agradecemos por sua contribuição, uma notificação será enviada ao seu email assim que seu tópico for respondido!</p>
+            <a href="#">Descubra outros trabalhos!</a>
+            <button class="btn-create-new-topic" (click)="status = Status.Enviar">
+                {{status ? 'criar novo tópico' : ''}}
+            </button>
+
+            <div class="waiting-feedback">
+                
+                <div class="empty-topic">
+                    <div class="check-feedback">
+                        <img src="../../assets/icons/checks-bold (1).svg" width="50"/>
+                        <p>Aguardando feedback dos autores</p>
+                        <a href="#">Editar tópico</a>
+                    </div>
+                    <h5>Assunto da pergunta aparece aqui</h5>
+                    <h6>Carlos Henrique Santos</h6>
+                    <p>
+                        Comecinho da pergunta aparece aqui resente relato inscreve-se no campo da análise da dimensão e impacto de processo formativo situado impacto de processo formativo processo...
+                    </p>
+                    <div class="replys">
+                        <img src="../../assets/icons/dots-three-outline-vertical-fill.svg" id="points"/>
+                        <div id="heart">
+                            <img src="../../assets/icons/heart-straight-fill.svg"/>
+                        </div>
+                        <p>1 like</p>
+                        <p>0 resposta</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
 </div>
