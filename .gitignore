@@ -33,3 +33,4 @@ ts/typings
 Thumbs.db
 
 # Screenshots
+ts/cypress/screenshots
