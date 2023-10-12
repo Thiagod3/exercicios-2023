@@ -3,143 +3,166 @@
 import 'package:flutter/material.dart';
 import 'package:from_css_color/from_css_color.dart';
 
+import '../model.dart';
+import '../dio_client.dart';
+import 'cards.dart';
+
 class Homepage extends StatelessWidget{
+
+final Function(String) onDateSelected;
+
+Homepage({required this.onDateSelected});
 
   @override
   Widget build(BuildContext context){
-    return Column(
-      children: [
-        Container(
-          color: fromCssColor('#456189'),
-          height: 64,
-          width: double.infinity,
-          child: Column(
+    return Container(
+      child: Column(
             children: [
-              ElevatedButton.icon(onPressed: (){},
-               icon: Container(
-                  decoration: BoxDecoration(              
-                    color: fromCssColor('#306DC3'),
-                    shape: BoxShape.circle,
-                  ),
-                  padding: EdgeInsets.fromLTRB(3, 3, 3, 3),
-                  child: Icon(
-                    Icons.calendar_month_outlined,
-                    color: Colors.black,
-                  ),
-                ),
-                label: Text(
-                  "Exibindo todas atividades",
-                  style: TextStyle( color: Colors.black),
-                ),
-                ),            
-            ],
-          ),
-        ),
-        Row(
-              children: [
-                Container(
-                  width: 60,
-                  height: 62,
-                  child: TextButton(
-                    onPressed: (){},
-                    child: Text(
-                      "Nov 2023",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.w900,
+              Container(
+                color: fromCssColor('#456189'),
+                width: double.infinity,
+                child: Column(
+                  children: [
+                    ElevatedButton.icon(onPressed: (){},
+                     icon: Container(
+                        decoration: BoxDecoration(              
+                          color: fromCssColor('#306DC3'),
+                          shape: BoxShape.circle,
+                        ),
+                        padding: EdgeInsets.fromLTRB(3, 3, 3, 3),
+                        child: Icon(
+                          Icons.calendar_month_outlined,
+                          color: Colors.black,
                         ),
                       ),
-                    style: ButtonStyle(
-                      shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.zero)),
-                    ),
-                  ),
-                ),
-                Container(
-                  width: 60,
-                  height: 60,
-                  margin: EdgeInsets.only(top: 2),
-                  child: TextButton(
-                    onPressed: (){},
-                    child: Text("26",
-                      style: TextStyle(
-                        color: Colors.white
-                      ),),
-                    style: ButtonStyle(                      
-                      backgroundColor:  MaterialStateProperty.all(fromCssColor('#306DC3')),
-                      shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.zero)),
-                    ),
-                  ),
-                ),
-                Container(
-                  width: 60,
-                  height: 60,
-                  margin: EdgeInsets.only(top: 2),
-                  child: TextButton(
-                    onPressed: (){},
-                    child: Text("27",
-                      style: TextStyle(
-                        color: Colors.white
-                      ),),
-                    style: ButtonStyle(                      
-                      backgroundColor:  MaterialStateProperty.all(fromCssColor('#306DC3')),
-                      shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.zero)),
-                    ),
-                  ),
-                ),
-                Container(
-                  width: 60,
-                  height: 60,
-                  margin: EdgeInsets.only(top: 2),
-                  child: TextButton(
-                    onPressed: (){},
-                    child: Text("28",
-                      style: TextStyle(
-                        color: Colors.white
-                      ),),
-                    style: ButtonStyle(                      
-                      backgroundColor:  MaterialStateProperty.all(fromCssColor('#306DC3')),
-                      shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.zero)),
-                    ),
-                  ),
-                ),
-                Container(
-                  width: 60,
-                  height: 60,
-                  margin: EdgeInsets.only(top: 2),
-                  child: TextButton(
-                    onPressed: (){},
-                    child: Text("29",
-                      style: TextStyle(
-                        color: Colors.white
-                      ),),
-                    style: ButtonStyle(                      
-                      backgroundColor:  MaterialStateProperty.all(fromCssColor('#306DC3')),
-                      shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.zero)),
-                    ),
-                  ),
-                ),
-                Container(
-                  width: 60,
-                  height: 60,
-                  margin: EdgeInsets.only(top: 2),
-                  child: TextButton(
-                    onPressed: (){},
-                    child: Text(
-                      "30",
-                      style: TextStyle(
-                        color: Colors.white
+                      label: Text(
+                        "Exibindo todas atividades",
+                        style: TextStyle( color: Colors.black),
                       ),
-                      ),
-                    style: ButtonStyle(                      
-                      backgroundColor:  MaterialStateProperty.all(fromCssColor('#306DC3')),
-                      shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.zero)),
-                    ),
-                  ),
+                      ),            
+                  ],
                 ),
-
-              ],
-            ),
-      ],
+              ),
+              Row(
+                    children: [
+                      Container(
+                        width: 60,
+                        height: 62,
+                        child: TextButton(
+                          onPressed: (){},
+                          child: Text(
+                            "Nov 2023",
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.w900,
+                              ),
+                            ),
+                          style: ButtonStyle(
+                            shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.zero)),
+                          ),
+                        ),
+                      ),
+                      Container(
+                        width: 60,
+                        height: 60,
+                        margin: EdgeInsets.only(top: 2),
+                        child: TextButton(
+                          onPressed: (){
+                            print('26');
+                            onDateSelected('26');
+                          },
+                          child: Text("26",
+                            style: TextStyle(
+                              color: Colors.white
+                            ),),
+                          style: ButtonStyle(                      
+                            backgroundColor:  MaterialStateProperty.all(fromCssColor('#306DC3')),
+                            shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.zero)),
+                          ),
+                        ),
+                      ),
+                      Container(
+                        width: 60,
+                        height: 60,
+                        margin: EdgeInsets.only(top: 2),
+                        child: TextButton(
+                          onPressed: (){
+                            print('27');
+                            onDateSelected('27');
+                          },
+                          child: Text("27",
+                            style: TextStyle(
+                              color: Colors.white
+                            ),),
+                          style: ButtonStyle(                      
+                            backgroundColor:  MaterialStateProperty.all(fromCssColor('#306DC3')),
+                            shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.zero)),
+                          ),
+                        ),
+                      ),
+                      Container(
+                        width: 60,
+                        height: 60,
+                        margin: EdgeInsets.only(top: 2),
+                        child: TextButton(
+                          onPressed: (){
+                            print('28');
+                            onDateSelected('28');
+                          },
+                          child: Text("28",
+                            style: TextStyle(
+                              color: Colors.white
+                            ),),
+                          style: ButtonStyle(                      
+                            backgroundColor:  MaterialStateProperty.all(fromCssColor('#306DC3')),
+                            shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.zero)),
+                          ),
+                        ),
+                      ),
+                      Container(
+                        width: 60,
+                        height: 60,
+                        margin: EdgeInsets.only(top: 2),
+                        child: TextButton(
+                          onPressed: (){
+                            print('29');
+                            onDateSelected('29');
+                          },
+                          child: Text("29",
+                            style: TextStyle(
+                              color: Colors.white
+                            ),),
+                          style: ButtonStyle(                      
+                            backgroundColor:  MaterialStateProperty.all(fromCssColor('#306DC3')),
+                            shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.zero)),
+                          ),
+                        ),
+                      ),
+                      Container(
+                        width: 60,
+                        height: 60,
+                        margin: EdgeInsets.only(top: 2),
+                        child: TextButton(
+                          onPressed: (){
+                            print('30');
+                            onDateSelected('30');
+                          },
+                          child: Text(
+                            "30",
+                            style: TextStyle(
+                              color: Colors.white
+                            ),
+                            ),
+                          style: ButtonStyle(                      
+                            backgroundColor:  MaterialStateProperty.all(fromCssColor('#306DC3')),
+                            shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.zero)),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+            ],
+          ),
     );
   }
 }

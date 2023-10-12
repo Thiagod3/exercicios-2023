@@ -8,6 +8,10 @@ import '../dio_client.dart';
 
 class Cards extends StatelessWidget {
 
+  final String day;
+
+  Cards({required this.day});
+
   Color getColor(String colorString) {
   try {
     return fromCssColor(colorString);
@@ -29,9 +33,14 @@ class Cards extends StatelessWidget {
 
   ActivityModel ? activity;
 
-  Future<ActivityModel> fetchActivity() async {
-    return await ActivityApiClient().request();
-  }
+ Future<ActivityModel> fetchActivity() async {
+  var activities = await ActivityApiClient().request();
+  var filteredActivities = activities.activity.where((activity) {
+    var date = DateTime.parse(activity['start']);
+    return date.day.toString() == day;
+  }).toList();
+  return ActivityModel(activity: filteredActivities); 
+}
 
   @override
   Widget build(BuildContext context) {

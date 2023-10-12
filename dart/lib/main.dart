@@ -1,20 +1,30 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:chuva_dart/components/cards.dart';
-import 'package:chuva_dart/components/homepage.dart';
+
 import 'package:flutter/material.dart';
-import 'package:from_css_color/from_css_color.dart';
-import 'package:dio/dio.dart';
 
-import 'package:chuva_dart/model.dart';
-import 'dio_client.dart';
+import 'components/cards.dart';
 import 'components/homepage.dart';
-
 void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  const MyApp({super.key});
+
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  String daySelected = '26';
+
+  void onDateSelected(String day) {
+    setState(() {
+      daySelected = day;
+    });
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -47,10 +57,10 @@ class MyApp extends StatelessWidget {
 
         body: Center(
           child: Column(children: <Widget>[            
-              Homepage(),
+              Homepage(onDateSelected: onDateSelected),   
               Expanded(
-                child: Cards(),
-              ),
+                child: Cards(day: daySelected),
+              ),         
           ]),
         ),
       ),
