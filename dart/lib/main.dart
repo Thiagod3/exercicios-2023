@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:chuva_dart/components/cards.dart';
 import 'package:chuva_dart/components/homepage.dart';
 import 'package:flutter/material.dart';
 import 'package:from_css_color/from_css_color.dart';
@@ -47,6 +48,9 @@ class MyApp extends StatelessWidget {
         body: Center(
           child: Column(children: <Widget>[            
               Homepage(),
+              Expanded(
+                child: Cards(),
+              ),
           ]),
         ),
       ),
