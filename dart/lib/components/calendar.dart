@@ -3,15 +3,11 @@
 import 'package:flutter/material.dart';
 import 'package:from_css_color/from_css_color.dart';
 
-import '../model.dart';
-import '../dio_client.dart';
-import 'cards.dart';
-
-class Homepage extends StatelessWidget{
+class Calendar extends StatelessWidget{
 
 final Function(String) onDateSelected;
 
-Homepage({required this.onDateSelected});
+Calendar({required this.onDateSelected});
 
   @override
   Widget build(BuildContext context){
@@ -68,7 +64,6 @@ Homepage({required this.onDateSelected});
                         margin: EdgeInsets.only(top: 2),
                         child: TextButton(
                           onPressed: (){
-                            print('26');
                             onDateSelected('26');
                           },
                           child: Text("26",
@@ -87,7 +82,6 @@ Homepage({required this.onDateSelected});
                         margin: EdgeInsets.only(top: 2),
                         child: TextButton(
                           onPressed: (){
-                            print('27');
                             onDateSelected('27');
                           },
                           child: Text("27",
@@ -106,7 +100,6 @@ Homepage({required this.onDateSelected});
                         margin: EdgeInsets.only(top: 2),
                         child: TextButton(
                           onPressed: (){
-                            print('28');
                             onDateSelected('28');
                           },
                           child: Text("28",
@@ -125,7 +118,6 @@ Homepage({required this.onDateSelected});
                         margin: EdgeInsets.only(top: 2),
                         child: TextButton(
                           onPressed: (){
-                            print('29');
                             onDateSelected('29');
                           },
                           child: Text("29",
@@ -144,7 +136,6 @@ Homepage({required this.onDateSelected});
                         margin: EdgeInsets.only(top: 2),
                         child: TextButton(
                           onPressed: (){
-                            print('30');
                             onDateSelected('30');
                           },
                           child: Text(

@@ -2,21 +2,24 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
 import 'components/cards.dart';
-import 'components/homepage.dart';
+import 'components/calendar.dart';
 void main() {
-  runApp(MyApp());
+  initializeDateFormatting('pt_BR', null).then((_) {
+    runApp(ChuvaDart());
+  });
 }
 
-class MyApp extends StatefulWidget {
-  const MyApp({super.key});
+class ChuvaDart extends StatefulWidget {
+  const ChuvaDart({super.key});
 
   @override
   _MyAppState createState() => _MyAppState();
 }
 
-class _MyAppState extends State<MyApp> {
+class _MyAppState extends State<ChuvaDart> {
   String daySelected = '26';
 
   void onDateSelected(String day) {
@@ -57,7 +60,7 @@ class _MyAppState extends State<MyApp> {
 
         body: Center(
           child: Column(children: <Widget>[            
-              Homepage(onDateSelected: onDateSelected),   
+              Calendar(onDateSelected: onDateSelected),   
               Expanded(
                 child: Cards(day: daySelected),
               ),         

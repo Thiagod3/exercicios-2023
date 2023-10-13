@@ -13,16 +13,16 @@ class ActivityModel{
   }
 }
 
-class Activity{
+class Activities{
 
-  Activity({
+  Activities({
     required this.data
   });
   final List<Dados> data;
 
-  factory Activity.fromJson(Map<String, dynamic> data2) {
+  factory Activities.fromJson(Map<String, dynamic> data2) {
     final data = data2["data"] as List<Dados>;
-    return Activity(data: data);
+    return Activities(data: data);
   }
 }
 

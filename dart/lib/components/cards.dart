@@ -5,6 +5,7 @@ import 'package:from_css_color/from_css_color.dart';
 
 import '../model.dart';
 import '../dio_client.dart';
+import 'activity.dart';
 
 class Cards extends StatelessWidget {
 
@@ -48,7 +49,11 @@ class Cards extends StatelessWidget {
       future: fetchActivity(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return CircularProgressIndicator();
+          return SizedBox(
+            width: 300.0,
+            height: 100.0,
+            child: Image.network('https://chuva.net.br/wp-content/uploads/2023/06/logo-chuva-chapado.png'),
+          );
         } else if (snapshot.hasError) {
           return Text('Erro: ${snapshot.error}');
         } else {
@@ -60,7 +65,7 @@ class Cards extends StatelessWidget {
               List<Map<String, dynamic>> people = List<Map<String, dynamic>>.from(item['people']);
 
                 return Container(
-                  height: 90,
+                  height: 105,
                   margin: EdgeInsets.only(top: 3, left: 3, right: 3),
                   decoration: 
                     BoxDecoration(                
@@ -93,14 +98,23 @@ class Cards extends StatelessWidget {
                             overflow: TextOverflow.ellipsis,
                             textAlign: TextAlign.start,
                             ),
-                          Text(
-                            '${item['title']['pt-br']}',
-                            softWrap: true,
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                              fontWeight: FontWeight.w700
+                          TextButton(
+                            onPressed: () => Navigator.of(context).push(
+                              MaterialPageRoute(builder: (context) => Activity(id: item['id']),
+                              fullscreenDialog: true,)
                             ),
+                            child:
+                              Text(
+                                '${item['title']['pt-br']}',
+                                softWrap: true,
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w700
+                                ),
+                              ),
                           ),
                           Text(
                             getName(people),                            

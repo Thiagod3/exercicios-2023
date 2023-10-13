@@ -17,7 +17,6 @@ class ActivityApiClient {
     final parsedData1 = jsonDecode(responses[0].toString());
     final parsedData2 = jsonDecode(responses[1].toString());
 
-    // Combine the data from the two responses
     parsedData1['data'].addAll(parsedData2['data']);
 
     final activity = ActivityModel.fromJson(parsedData1);
