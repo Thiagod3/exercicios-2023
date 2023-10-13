@@ -3,12 +3,18 @@
 
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:provider/provider.dart';
 
-import 'components/cards.dart';
+import 'components/activity.dart';
 import 'components/calendar.dart';
 void main() {
   initializeDateFormatting('pt_BR', null).then((_) {
-    runApp(ChuvaDart());
+    runApp(
+      ChangeNotifierProvider(
+      create: (context) => FavModel(),
+      child: ChuvaDart(),
+    ),
+      );
   });
 }
 

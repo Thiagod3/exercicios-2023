@@ -5,10 +5,13 @@ import 'package:chuva_dart/main.dart';
 import 'package:chuva_dart/model.dart';
 import 'package:flutter/material.dart';
 import 'package:from_css_color/from_css_color.dart';
-
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:timezone/timezone.dart' as tz;
+import 'package:timezone/data/latest.dart' as tz;
+import 'package:flutter/foundation.dart';
+import 'package:provider/provider.dart';
 
 import '../dio_client.dart';
-import 'fav-btn.dart';
 import 'perfil.dart';
 
 class Activity extends StatelessWidget{
@@ -37,8 +40,12 @@ class Activity extends StatelessWidget{
 }
 
 String getHour(String dia) {
+  tz.initializeTimeZones();
   DateTime data = DateTime.parse(dia);
-  return DateFormat('HH:mm', 'pt-BR').format(data.toLocal());
+
+  tz.Location timeZone = tz.getLocation('America/Sao_Paulo');
+  tz.TZDateTime timeZoneDateTime = tz.TZDateTime.from(data, timeZone);
+  return DateFormat('HH:mm').format(timeZoneDateTime);
 }
 
 String getLoc(List<Map<String, dynamic>> locations) {
@@ -184,7 +191,7 @@ List<Map<String, dynamic>> getPeopleDetails(List<Map<String, dynamic>> people) {
                             ),
                         ),
                         Container(
-                          child: FavBtn(),
+                          child: FavBtn(id: this.id),
                         ),
                         Expanded(
                           child: ListView(
@@ -280,5 +287,95 @@ List<Map<String, dynamic>> getPeopleDetails(List<Map<String, dynamic>> people) {
         }
       },
     );
+  }
+}
+
+class FavModel extends ChangeNotifier {
+  late SharedPreferences prefs;
+  Map<int, bool> _isFavorited = {};
+
+  FavModel() {
+    loadPreference();
+  }
+
+  bool isFavorited(int id) => _isFavorited[id] ?? false;
+
+  void loadPreference() async {
+  prefs = await SharedPreferences.getInstance();
+  _isFavorited = Map.fromIterable(
+    prefs.getKeys().where((key) => key.startsWith('isFavorited_')),
+    key: (key) => int.parse((key as String).split('_')[1]),
+    value: (key) => prefs.getBool(key as String) ?? false,
+  );
+  notifyListeners();
+}
+
+  void toggleFavorite(int id) {
+  _isFavorited[id] = !(_isFavorited[id] ?? false);
+  prefs.setBool('isFavorited_$id', _isFavorited[id]!);
+  notifyListeners();
+}
+}
+
+
+
+class FavBtn extends StatelessWidget {
+  final int id;
+
+  FavBtn({required this.id});
+
+  @override
+  Widget build(BuildContext context) {
+    return Consumer<FavModel>(
+      builder: (context, favModel, child) {
+        return Container(
+          margin: EdgeInsets.fromLTRB(20, 5, 20, 0),
+          child: ElevatedButton(
+            onPressed: () {favModel.toggleFavorite(id);},
+            style: ButtonStyle(backgroundColor: MaterialStatePropertyAll(fromCssColor('#306DC3'))),
+            // ...
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  favModel.isFavorited(id) ? Icons.star_border : Icons.star,
+                  color: Colors.white,
+                  size: 24,
+                ),
+                Text(
+                  favModel.isFavorited(id) ? 'Remover da sua agenda' : 'Adicionar à sua agenda',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                  ),
+                )
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+}
+
+
+
+class FavMark extends StatelessWidget { 
+  final int id;
+
+  FavMark({required this.id});
+
+  @override
+  Widget build(BuildContext context) {
+    return Consumer<FavModel>(
+      builder: (context, favModel, child) {
+        return Container(
+          margin: EdgeInsets.fromLTRB(20, 5, 20, 0),
+          child: Icon(
+            favModel.isFavorited(id) ? Icons.bookmark : null,
+          ),
+        );
+      } 
+    );      
   }
 }
