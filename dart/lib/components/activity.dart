@@ -338,7 +338,7 @@ class FavBtn extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Icon(
-                  favModel.isFavorited(id) ? Icons.star_border : Icons.star,
+                  favModel.isFavorited(id) ? Icons.star : Icons.star_border,
                   color: Colors.white,
                   size: 24,
                 ),

@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, sort_child_properties_last
+// ignore_for_file: prefer_const_constructors, sort_child_properties_last, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
 import 'package:from_css_color/from_css_color.dart';
@@ -26,6 +26,13 @@ Calendar({required this.onDateSelected});
                 width: double.infinity,
                 child: Column(
                   children: [
+                    Text(
+                      "Programação",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20
+                        ),
+                      ),
                     ElevatedButton.icon(onPressed: (){},
                      icon: Container(
                         decoration: BoxDecoration(              
@@ -53,13 +60,24 @@ Calendar({required this.onDateSelected});
                         height: 62,
                         child: TextButton(
                           onPressed: (){},
-                          child: Text(
-                            "Nov 2023",
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.w900,
-                              ),
-                            ),
+                          child: Column(
+                            children: [
+                              Text(
+                                "Nov",
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w900,
+                                  ),
+                                ),
+                                Text(
+                                "2023",
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w900,
+                                  ),
+                                ),
+                            ],
+                          ),
                           style: ButtonStyle(
                             shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.zero)),
                           ),
